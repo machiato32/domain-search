@@ -1,0 +1,3 @@
+export const keywords:string[] = [
+    "adidas", "bulgari", "bvlgari", "burberry", "canon", "chanel", "christiandior", "dior", "danone", "staystrong", "uniform", "devergo", "daewoo", "opel", "chevrolet", "gucci", "harleydavidson", "harley", "davidson", "hellokitty", "kitty", "sanrio", "lacoste", "levis", "fendi", "givenchy", "kenzo", "louisvuitton", "vuitton", "celine", "puma", "xperia", "varta", "versace", "zara", "stradivarius", "massimodutti", "massimo", "dutti", "berskha", "pullbear", "oysho", "russelhobbs", "remington", "apple", "iphone", "ipod", "tommyhilfiger", "hilfiger", "audi", "volkswagen", "vw", "jackdaniels", "kingston"
+]

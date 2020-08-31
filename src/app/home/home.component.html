@@ -23,14 +23,49 @@
       <span>Domain</span>
     </mat-toolbar>
     <div style="padding: 15px;">
-      <button
-      type="button"
-      mat-stroked-button
-      color="primary"
-      (click)="onLoadDomains()">
-      <mat-icon aria-label="Side nav toggle icon">search</mat-icon>
-      Search
-    </button>
+      <div class="center">
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          (click)="onLoadDomains(this.domains)">
+          <mat-icon aria-label="Side nav toggle icon">search</mat-icon>
+          Új domainek lekérése
+        </button>
+
+      </div>
+     
+        <div *ngIf="isLoading" class="center" style="margin-top: 10px;">
+          <mat-spinner
+            diameter=50
+            color="primary">
+
+          </mat-spinner>
+        </div>
+      <div *ngFor="let domain of domains">
+        <mat-card style="margin-top: 10px;">
+          <mat-card-title>{{domain.name}}</mat-card-title>
+          <mat-card-content>
+            <p>
+              Beküldő: {{domain.sender}}
+            </p>
+            <p>
+              Regisztráció időpontja: {{domain.date.toDateString()}}
+            </p>
+            <p>
+              Kulcsszó: {{domain.matchingKey}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              mat-button
+              (click)="openDetails(domain.url)">
+              Részletek
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    
     </div>
     
   </mat-sidenav-content>

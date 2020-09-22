@@ -1,0 +1,73 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false">
+      <mat-toolbar>Menü</mat-toolbar>
+      <mat-nav-list>
+        <mat-list-item [routerLink]="['/']">
+            <mat-icon mat-list-icon>search</mat-icon>
+            <div mat-line><p>Új domainek</p></div>
+          </mat-list-item>
+          <mat-divider>
+    
+          </mat-divider>
+          <mat-list-item [routerLink]="['/history']">
+            <mat-icon mat-list-icon>history</mat-icon>
+            <div mat-line>Előzmény</div>
+          </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span>Előzmények</span>
+      </mat-toolbar>
+      <div style="padding: 15px;">
+        <div *ngIf="isDomains" class="center" style="margin-top: 10px;">
+            <p>Nem található előzmény!</p>
+        </div>
+        <div *ngFor="let domain of domains">
+          <mat-card style="margin-top: 10px;">
+            <mat-card-title style="color: primary">{{domain.name}}</mat-card-title>
+            <mat-card-content>
+              <p>
+                Beküldő: {{domain.sender}}
+              </p>
+              <p>
+                Regisztráció időpontja: {{domain.date.toDateString()}}
+              </p>
+              <p>
+                Panasz benyújtásának határideje: {{domain.deadlineDate.toDateString()}}
+              </p>
+              <p>
+                Kulcsszó: {{domain.matchingKey}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button
+                mat-button
+                (click)="onDetails(domain.url)">
+                Részletek
+              </button>
+              <button
+                mat-button
+                (click)="onDeleteDomain(domain)">
+                Törlés
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      
+      </div>
+      
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

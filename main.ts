@@ -6,6 +6,8 @@ let win: BrowserWindow = null;
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
 
+  
+
 function createWindow(): BrowserWindow {
 
   const electronScreen = screen;
@@ -19,10 +21,12 @@ function createWindow(): BrowserWindow {
     height: size.height,
     webPreferences: {
       nodeIntegration: true,
+      preload: __dirname + '/preload.js',
       allowRunningInsecureContent: (serve) ? true : false,
       enableRemoteModule : false // true if you want to use remote module in renderer context (ie. Angular)
     },
   });
+  win.removeMenu();
 
   if (serve) {
 
@@ -78,5 +82,5 @@ try {
 
 } catch (e) {
   // Catch Error
-  // throw e;
+  throw e;
 }
